@@ -1,0 +1,121 @@
+.about-project__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  color: #FFFFFF;
+  padding-bottom: 23px;
+  letter-spacing: -0.04em;
+  border-bottom: #DADADA solid 1px;
+}
+
+.about-project__descriptions {
+  display: flex;
+  margin: 70px auto 110px;
+}
+
+.about-project__description {
+  max-width: 550px;
+  margin-right: 40px;
+}
+
+.about-project__description:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.about-project__subtitle {
+  font-size: 20px;
+  line-height: 1.2;
+  color: #FFF;
+  margin: 0 0 26px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.about-project__text {
+  font-size: 14px;
+  line-height: 1.43;
+  color: #FFF;
+  margin: 0;
+}
+
+.about-project__diagram {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.about-project__diagram-text {
+  font-size: 14px;
+  line-height: 1.21;
+  padding: 14px 0 0;
+  text-align: center;
+  color: #8B8B8B;
+  margin: 0;
+}
+
+.about-project__diagram-text_color_green {
+ background-color: #3DDC84;
+ color: #000;
+ padding: 9px 0;
+}
+
+.about-project__diagram-text_color_grey {
+  background-color: #303030;
+  color: #FFF;
+  padding: 9px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .about-project__descriptions {
+    margin: 70px auto 93px;
+  }
+
+  .about-project__description {
+    margin-right: 30px;
+  }
+
+  .about-project__text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .about-project__title {
+    font-size: 18px;
+    line-height: 1.22;
+    padding-bottom: 28px;
+  }
+
+  .about-project__descriptions {
+    flex-direction: column;
+    margin: 60px auto;
+  }
+
+  .about-project__description {
+    margin-right: 0;
+    margin-bottom: 59px;
+  }
+
+  .about-project__subtitle {
+    font-size: 18px;
+    line-height: 1.22;
+    margin: 0 0 16px;
+  }
+
+  .about-project__text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about-project__diagram {
+    display: grid;
+    grid-template-columns: 1fr 1.84fr;
+  }
+
+  .about-project__diagram-text {
+    font-size: 11px;
+    line-height: 1.18;
+    padding: 11px 0;
+  }
+}

@@ -1,0 +1,27 @@
+.page {
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #202020;
+  min-width: 320px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page__header {
+  margin: auto;
+}
+
+.page__main {
+  margin: auto;
+}
+
+.page__footer {
+  margin: 79px auto 0;
+}
+
+.page__more {
+  margin: auto;
+}
+
+.main {
+  max-width: 1200px;
+}
