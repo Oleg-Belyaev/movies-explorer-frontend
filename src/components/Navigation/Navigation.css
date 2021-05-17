@@ -68,7 +68,7 @@
   top: 0;
   right: 0;
   background-color: #202020;
-  z-index: 5;
+  z-index: 11;
   display: none;
 }
 
@@ -146,7 +146,7 @@
   background-image: url('../../images/burger.svg');
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 10;
+  z-index: 12;
   position: absolute;
   top: 13px;
   right: 30px;
@@ -192,6 +192,10 @@
 }
 
 @media screen and (max-width: 400px) {
+
+  .menu {
+    right: 0;
+  }
 
   .navigation__link {
     font-size: 10px;

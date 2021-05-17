@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 550px) {
   .portfolio__title {
     color: #A0A0A0;
     font-size: 14px;

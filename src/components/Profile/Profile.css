@@ -1,10 +1,9 @@
 .main {
-  width: calc(100% - 140px);
   max-width: 1200px;
 }
 
 .main__profile {
-  margin: auto;
+  margin: 0 70px 0;
   padding-bottom: calc(100vh - 646px);
 }
 
@@ -154,9 +153,9 @@
 }
 
 @media screen and (max-width: 400px) {
-  .main {
-    width: calc(100% - 60px);
-    max-width: 1200px;
+  
+  .main__profile {
+    margin: 0 30px 0;
   }
 
   .profile__info {
