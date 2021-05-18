@@ -1,3 +1,6 @@
+Приложние movies-explorer.
+
+Ссылка на макет https://disk.yandex.ru/d/xA19S5Ig_6LF0A
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

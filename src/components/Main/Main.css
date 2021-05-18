@@ -1,0 +1,66 @@
+.main__promo {
+  margin: 20px 40px 0;
+  padding: 160px 0 30px;
+}
+
+.main__about-project {
+  margin: 110px 70px;
+}
+
+.main__techs {
+  padding: 87px 70px;
+}
+
+.main__about-me {
+  margin: 122px 70px 108px;
+}
+
+.main__portfolio {
+  margin: 0 70px 186px;
+}
+
+@media screen and (max-width: 800px) {
+  .main__promo {
+    margin: 20px 20px 0;
+    padding: 350px 0 30px;
+  }
+
+  .main__about-project {
+    margin: 90px 50px;
+  }
+
+  .main__techs {
+    padding: 90px 50px;
+  }
+
+  .main__about-me {
+    margin: 93px 50px;
+  }
+
+  .main__portfolio {
+    margin: 0 50px 153px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main__promo {
+    margin: 14px 14px 0;
+    padding: 220px 0 17px;
+  }
+
+  .main__about-project {
+    margin: 70px 18px;
+  }
+
+  .main__techs {
+    padding: 61px 18px;
+  }
+
+  .main__about-me {
+    margin: 75px 14px 70px;
+  }
+
+  .main__portfolio {
+    margin: 70px 14px 130px;
+  }
+}

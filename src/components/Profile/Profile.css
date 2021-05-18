@@ -1,0 +1,182 @@
+.main {
+  max-width: 1200px;
+}
+
+.main__profile {
+  margin: 0 70px 0;
+  padding-bottom: calc(100vh - 646px);
+}
+
+.profile__title {
+  margin: 74px 0 106px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.21;
+  font-weight: 500;
+  color: #FFF;
+}
+
+.profile__info {
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.profile__info_inactive {
+  display: none;
+}
+
+.profile__item {
+  padding: 17px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #424242 1px solid;
+}
+
+.profile__item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 206px;
+}
+
+.profile__text {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #FFF;
+  margin: 0;
+  padding: 0;
+}
+
+.prolife__button {
+  margin: 0 auto 16px;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  line-height: 1.23;
+  cursor: pointer;
+  transition: opacity .5s linear;
+  background: none;
+  color: #FFF;
+  display: block;
+}
+
+.prolife__button:hover {
+  opacity: 0.8;
+}
+
+.prolife__button_type_logout {
+  color: #EE3465;
+}
+
+.prolife__button_type_save {
+  width: 100%;
+  padding: 13px 0 15px;
+  background-color: #3456F3;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.prolife__button_inactive {
+  opacity: .3;
+  background: none;
+  pointer-events: none;
+}
+
+.profile__form {
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.profile__form_inactive {
+  display: none;
+}
+
+.profile__field {
+  padding: 17px 0;
+  border-bottom: #424242 1px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__field:last-of-type {
+  border-bottom: none;
+  margin-bottom: 189px;
+}
+
+.profile__label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #FFF;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__input {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #FFF;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+  text-align: end;
+}
+
+.profile__input-error {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #FF004C;
+  text-align: center;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .profile__title {
+    margin: 236px 0 80px;
+  }
+
+  .profile__item:last-of-type {
+    margin-bottom: 195px;
+  }
+
+  .profile__field:last-of-type {
+    margin-bottom: 195px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  
+  .main__profile {
+    margin: 0 30px 0;
+  }
+
+  .profile__info {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .profile__form {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .profile__title {
+    margin: 70px 0 65px;
+  }
+
+  .profile__item:last-of-type {
+    margin-bottom: 362px;
+  }
+
+  .profile__field:last-of-type {
+    margin-bottom: 362px;
+  }
+}

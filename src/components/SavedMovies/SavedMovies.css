@@ -1,0 +1,29 @@
+.main__search {
+  padding: 67px 0;
+}
+
+.main__cards {
+  margin: 69px 0 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .main__search {
+    padding: 77px 0 106px;
+    margin: 0 30px;
+  }
+
+  .main__cards {
+    margin: 79px 30px 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main__search {
+    margin: 0 10px;
+    padding: 59px 0 16px;
+  }
+
+  .main__cards {
+    margin: 48px 10px 10px;
+  }
+}

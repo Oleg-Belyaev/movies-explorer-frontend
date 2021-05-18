@@ -1,0 +1,147 @@
+.main__registr {
+  margin: auto;
+  padding-bottom: calc(100vh - 625px);
+}
+
+.registr {
+  max-width: 396px;
+}
+
+.registr__header {
+  padding: 70px 0 0;
+}
+
+.registr__logo {
+  width: 38px;
+  height: 38px;
+}
+
+.registr__title {
+  margin: 37px 0 20px;
+  font-size: 24px;
+  line-height: 1.21;
+  font-weight: 500;
+  color: #FFF;
+}
+
+.registr__field {
+  padding: 19px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.registr__label {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #8B8B8B;
+  margin: 0 0 5px;
+  padding: 0;
+}
+
+.registr__input {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  color: #FFF;
+  margin: 0 0 6px 0;
+  border: none;
+  padding: 0 0 10px;
+  background: none;
+  outline: none;
+  border-bottom: #424242 1px solid;
+}
+
+.registr__input:focus {
+  border-bottom: #4285F4 1px solid;
+}
+
+.registr__input_error {
+  color: #EE3465
+} 
+
+.registr__input-error {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #EE3465;
+}
+
+.registr__button {
+  margin: 131px auto 16px;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.21;
+  cursor: pointer;
+  transition: opacity .5s linear;
+  color: #FFF;
+  display: block;
+  width: 100%;
+  background-color: #4285F4;
+  border-radius: 3px;
+  padding: 15px 0;
+}
+
+.registr__button:hover {
+  opacity: 0.8;
+}
+
+.registr__button_inactive {
+  opacity: .3;
+  background: none;
+  pointer-events: none;
+}
+
+.registr__text {
+  color: #8B8B8B;
+  font-size: 14px;
+  line-height: 1.21;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.registr__link {
+  color: #4285F4;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+  .registr__header {
+    padding: 232px 0 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .registr {
+    max-width: 260px;
+  }
+  
+  .registr__header {
+    padding: 56px 0 0;
+  }
+
+  .registr__logo {
+    display: block;
+    margin: auto;
+  }
+  
+  .registr__title {
+    text-align: center;
+    margin: 51px 0 61px;
+  }
+
+  .registr__button {
+    margin: 220px auto 16px;
+    font-size: 12px;
+    line-height: 1.22;
+  }
+
+  .registr__text {
+    color: #8B8B8B;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
