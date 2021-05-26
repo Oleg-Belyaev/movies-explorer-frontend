@@ -1,35 +1,49 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 import headerLogoPath from '../../images/logo.svg';
 import './Login.css';
 
-function Login () {
+function Login (props) {
+  const { values, errors, isValid, handleChange, resetForm } = useForm();
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    props.onLogin({
+      email: values.email,
+      password: values.password
+    })
+    resetForm();
+  }
+
   return (
     <main className="main page__main">
-      <section className="registr main__login">
-        <div className="registr__header">
-          <Link to="/" className="registr__link">
-            <img src={headerLogoPath} alt="логотип" className="registr__logo" />
+      <section className="login main__login">
+        <div className="login__header">
+          <Link to="/" className="login__link">
+            <img src={headerLogoPath} alt="логотип" className="login__logo" />
           </Link>
-          <h1 className="registr__title">Рады видеть!</h1>
+          <h1 className="login__title">Рады видеть!</h1>
         </div>
-        <form className="registr__form" name="register">
-          <div className="registr__field">
-            <label className="registr__label" htmlFor="email">Email</label>
-            <input type="email" className="registr__input" 
-            name="email" placeholder="Email" id="email-input" required defaultValue="pochta@yandex.ru" />
-            <span className="registr__input-error"></span>
+        <form className="login__form" name="login" onSubmit={handleSubmit}>
+          <div className="login__field">
+            <label className="login__label" htmlFor="email">Email</label>
+            <input type="email" className={`${errors.email ? "login__input login__input_error" : "login__input"}`}
+            name="email" placeholder="Введите Email" id="email-input" required value={values.email || ''} onChange={handleChange} />
+            <span className="login__input-error">{errors.email}</span>
           </div>
-          <div className="registr__field">
-            <label className="registr__label" htmlFor="email">Пароль</label>
-            <input type="password" className="registr__input registr__input_error" 
-            name="password" placeholder="Email" id="email-input" required defaultValue="123456" />
-            <span className="registr__input-error">Что-то пошло не так...</span>
+          <div className="login__field">
+            <label className="login__label" htmlFor="email">Пароль</label>
+            <input type="password" className={`${errors.email ? "login__input login__input_error" : "login__input"}`} 
+            name="password" placeholder="Введите пароль" id="password-input" required minLength="8" value={values.password || ''} onChange={handleChange} />
+            <span className="login__input-error">{errors.password}</span>
           </div>
-          <button type="submit" className="registr__button">Войти</button>
+          <span className="login__submit-error">{props.errorLogin}</span>
+          <button type="submit" className={`${isValid ? "login__button" : "login__button login__button_inactive"}`}>Войти</button>
         </form>
-        <p className="registr__text">
+        <p className="login__text">
           Ещё не зарегистрированы? 
-          <Link to="/signup" className="registr__link"> Регистация</Link>
+          <Link to="/signup" className="login__link"> Регистация</Link>
         </p>
       </section>
     </main>

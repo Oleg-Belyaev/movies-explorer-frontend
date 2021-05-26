@@ -95,15 +95,17 @@
 
 .profile__field {
   padding: 17px 0;
-  border-bottom: #424242 1px solid;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.profile__field:last-of-type {
-  border-bottom: none;
-  margin-bottom: 189px;
+.profile__field:first-of-type {
+  border-bottom: #424242 1px solid;
+}
+
+.profile__container {
+  margin-top: 206px;
 }
 
 .profile__label {
@@ -128,6 +130,10 @@
   text-align: end;
 }
 
+.profile__input_error {
+  color: #EE3465
+}
+
 .profile__input-error {
   font-size: 11px;
   font-weight: 500;
@@ -147,8 +153,8 @@
     margin-bottom: 195px;
   }
 
-  .profile__field:last-of-type {
-    margin-bottom: 195px;
+  .profile__container {
+    margin-top: 195px;
   }
 }
 
@@ -176,7 +182,7 @@
     margin-bottom: 362px;
   }
 
-  .profile__field:last-of-type {
-    margin-bottom: 362px;
+  .profile__container {
+    margin-top: 362px;
   }
 }
