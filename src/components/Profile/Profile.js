@@ -14,6 +14,7 @@ function Profile (props) {
   React.useEffect(() => {
     if (currentUser) {
       resetForm(currentUser, {}, true)
+      props.onUpload()
     }
   }, [currentUser, resetForm]);
 
@@ -34,19 +35,19 @@ function Profile (props) {
         <form className="profile__form" name="profileChange" onSubmit={handleSubmit}>
           <div className="profile__field">
             <label className="profile__label" htmlFor="name">Имя</label>
-            <input type="text" className="profile__input" 
+            <input disabled={props.disabled ? true : false} type="text" className="profile__input" 
             name="name" placeholder="Name" id="name-input" required pattern="^[А-Яа-яЁёa-zA-Z\s/-]{3,}$" value={values.name || ''} onChange={handleChange}/>  
           </div>
           <span className="registr__input-error">{`${errors.name ? 'Имя должно содержать только латиницу, кириллицу, пробел или дефис. Длина не менее 3 символов' : ''}`}</span>
           <div className="profile__field">
             <label className="profile__label" htmlFor="email">E-mail</label>
-            <input type="email" className="profile__input" 
+            <input disabled={props.disabled ? true : false} type="email" className="profile__input" 
             name="email" placeholder="E-mail" id="email-input" required value={values.email || ''} onChange={handleChange}/>
           </div>
           <span className="login__input-error">{errors.email}</span>
           <div className="profile__container">
             <span className="profile__input-error">{props.error ? 'При обновлении профиля произошла ошибка.' : ''}</span>
-            <button type="submit" className={`${(isValid && (values.name !== currentUser.name || values.email !== currentUser.email)) ? "prolife__button prolife__button_type_save" 
+            <button disabled={props.disabled ? true : false} type="submit" className={`${(isValid && (values.name !== currentUser.name || values.email !== currentUser.email)) ? "prolife__button prolife__button_type_save" 
             : "prolife__button prolife__button_type_save prolife__button_inactive"}`}>Сохранить</button>
           </div>
         </form>
@@ -65,6 +66,10 @@ function Profile (props) {
             <p className="profile__text">E-mail</p>
             <p className="profile__text">{currentUser ? currentUser.email : null}</p>
           </div>
+          <p className="profile__text profile__text_update">{
+            (props.update) ? 'Данные успешно обновлены!' : ''
+          }
+          </p>
           <button onClick={onClick} className="prolife__button">Редактировать</button>
           <button onClick={props.logout} className="prolife__button prolife__button_type_logout">Выйти из аккаунта</button>
         </div>

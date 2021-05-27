@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && scp -r ./build/* oleg-belyaev@84.252.132.21:/home/oleg-belyaev/movies-explorer-frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -22,6 +22,7 @@ function App() {
   const [serserError, setSerserError] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState();
   const [isChange, setIsChange] = React.useState(false);
+  const [isUpdateDataUser, setIsUpdateDataUser] = React.useState(false);
   const [cards, setCards] = React.useState([]);
   const [cardsSeved, setCardsSeved] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -34,9 +35,11 @@ function App() {
   const [isErrorSearch, setIsErrorSearch] = React.useState(false);
   const [isEmptySaved, setIsEmptySaved] = React.useState(false);
   const [isErrorSearchSaved, setIsErrorSearchSaved] = React.useState(false);
+  const [disabled, setDisabled] = React.useState(false);
   const history = useHistory();
 
   function handleRegister(newUserData) {
+    setDisabled(true);
     mainApi.signUp(newUserData)
     .then(() => {
       mainApi.singIn(newUserData)
@@ -52,9 +55,13 @@ function App() {
     .catch((err) => {
       setSerserError(err);
     })
+    .finally(() => {
+      setDisabled(false);
+    })
   }
 
   function handleLogin(newUserData) {
+    setDisabled(true);
     mainApi.singIn(newUserData)
     .then((userData) => {
     localStorage.setItem('token', userData.token);
@@ -64,17 +71,29 @@ function App() {
     .catch((err) => {
       setSerserError(err);
     })
+    .finally(() => {
+      setDisabled(false);
+    })
+  }
+
+  function handleUpload () {
+    setIsUpdateDataUser(false);
   }
 
   function handleUpdateUser(userData) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
+    setDisabled(true);
     mainApi.editUserInfo(userData, token)
     .then((data) => {
       setCurrentUser(data);
       setIsChange(false);
+      setIsUpdateDataUser(true);
     })
     .catch((err) => {
       setSerserError(err);
+    })
+    .finally(() => {
+      setDisabled(false);
     })
   }
 
@@ -86,45 +105,83 @@ function App() {
     setIsErrorSearch(false)
     setcountCards(defaultCount);
     setIsLoading(true);
-    movieApi.getMovie()
-    .then((data) => {
-      if (isShort) {
-        const cardsFound = data.filter((card) => {
-          return (card.nameRU.toLowerCase().includes(word.toLowerCase()) 
-          && card.duration < CONFIG.maxDuration)
-        })
-        for (let i = 0; i < cardsSeved.length; i++) {
-          for (let j = 0; j < cardsFound.length; j++) {
-            if (cardsFound[j].id === cardsSeved[i].movieId) {
-              cardsFound[j].isSaved = true
-            }
+    const cards = JSON.parse(localStorage.getItem('movie'));
+    if (cards && isShort) {
+      const cardsFound = cards.filter((card) => {
+        return (card.nameRU.toLowerCase().includes(word.toLowerCase()) 
+        && card.duration < CONFIG.maxDuration)
+      })
+      for (let i = 0; i < cardsSeved.length; i++) {
+        for (let j = 0; j < cardsFound.length; j++) {
+          if (cardsFound[j].id === cardsSeved[i].movieId) {
+            cardsFound[j].isSaved = true
           }
         }
-        setCards(cardsFound);
-        (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
-      } else {
-        const cardsFound = data.filter((card) => {
-          return card.nameRU.toLowerCase().includes(word.toLowerCase())
-        })
-        for (let i = 0; i < cardsSeved.length; i++) {
-          for (let j = 0; j < cardsFound.length; j++) {
-            if (cardsFound[j].id === cardsSeved[i].movieId) {
-              cardsFound[j].isSaved = true
-            }
-          }
-        }
-        setCards(cardsFound);
-        (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
       }
-    })
-    .catch((err) => {
-      setIsErrorSearch(true)
-      setIsEmpty(false)
-    })
-    .finally(() => {
-      setIsLoading(false)
-    })
+      setCards(cardsFound);
+      localStorage.setItem('movieSeached', JSON.stringify(cardsFound));
+      setIsLoading(false);
+      (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
+    } else if (cards && !isShort) {
+      const cardsFound = cards.filter((card) => {
+        return card.nameRU.toLowerCase().includes(word.toLowerCase())
+      })
+      for (let i = 0; i < cardsSeved.length; i++) {
+        for (let j = 0; j < cardsFound.length; j++) {
+          if (cardsFound[j].id === cardsSeved[i].movieId) {
+            cardsFound[j].isSaved = true
+          }
+        }
+      }
+      setCards(cardsFound);
+      localStorage.setItem('movieSeached', JSON.stringify(cardsFound));
+      setIsLoading(false);
+      (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
+    } else {
+      movieApi.getMovie()
+      .then((data) => {
+        localStorage.setItem('movie', JSON.stringify(data))
+        if (isShort) {
+          const cardsFound = data.filter((card) => {
+            return (card.nameRU.toLowerCase().includes(word.toLowerCase()) 
+            && card.duration < CONFIG.maxDuration)
+          })
+          for (let i = 0; i < cardsSeved.length; i++) {
+            for (let j = 0; j < cardsFound.length; j++) {
+              if (cardsFound[j].id === cardsSeved[i].movieId) {
+                cardsFound[j].isSaved = true
+              }
+            }
+          }
+          setCards(cardsFound);
+          localStorage.setItem('movieSeached', JSON.stringify(cardsFound));
+          (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
+        } else {
+          const cardsFound = data.filter((card) => {
+            return card.nameRU.toLowerCase().includes(word.toLowerCase())
+          })
+          for (let i = 0; i < cardsSeved.length; i++) {
+            for (let j = 0; j < cardsFound.length; j++) {
+              if (cardsFound[j].id === cardsSeved[i].movieId) {
+                cardsFound[j].isSaved = true
+              }
+            }
+          }
+          setCards(cardsFound);
+          localStorage.setItem('movieSeached', JSON.stringify(cardsFound));
+          (cardsFound.length === 0) ? setIsEmpty(true) : setIsEmpty(false)
+        }
+      })
+      .catch((err) => {
+        setIsErrorSearch(true)
+        setIsEmpty(false)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+    }
   }
+    
 
   function handleSearchSeved(word) {
     const token = localStorage.getItem('token');
@@ -266,14 +323,14 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       const token = localStorage.getItem('token');
+      const cardsSearched = JSON.parse(localStorage.getItem('movieSeached'));
       Promise.all([
         mainApi.getUserInfo(token),
-        movieApi.getMovie(),
         mainApi.getSevedMovie(token)
-      ]).then(([userData, cards, cardsSaved]) => { 
+      ]).then(([userData, cardsSaved]) => { 
         setCurrentUser(userData);
-        localStorage.setItem('movie', JSON.stringify(cards))
-        setCardsSeved(cardsSaved)
+        setCardsSeved(cardsSaved);
+        cardsSearched ? setCards(cardsSearched) : setCards([]);
       })
       .catch((err) => {
         console.log(err);
@@ -322,14 +379,14 @@ function App() {
           <Route exact path="/profile">
             <Header auth={loggedIn}/>
             <ProtectedRoute component={Profile} loggedIn={loggedIn} logout={handleLogOut} onUpdateUser={handleUpdateUser} error={serserError}
-            onChange={handleChangeUserData} change={isChange}/>
+            onChange={handleChangeUserData} update={isUpdateDataUser} change={isChange} onUpload={handleUpload} disabled={disabled}/>
             <Footer />
           </Route>
           <Route exact path="/signin">
-            <Login onLogin={handleLogin} errorLogin={serserError}/>
+            <Login onLogin={handleLogin} errorLogin={serserError} disabled={disabled}/>
           </Route>
           <Route exact path="/signup">
-            <Register onRegister={handleRegister} errorRegistr={serserError}/>
+            <Register onRegister={handleRegister} errorRegistr={serserError} disabled={disabled}/>
           </Route>
           <Route path="*">
             <PageNotFound />

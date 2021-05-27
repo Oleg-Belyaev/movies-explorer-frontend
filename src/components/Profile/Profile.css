@@ -35,7 +35,7 @@
 
 .profile__item:last-of-type {
   border-bottom: none;
-  margin-bottom: 206px;
+  /* margin-bottom: 206px; */
 }
 
 .profile__text {
@@ -45,6 +45,14 @@
   color: #FFF;
   margin: 0;
   padding: 0;
+}
+
+.profile__text_update {
+  font-size: 15px;
+  color: #3DDC84;
+  text-align: center;
+  margin-top: 26px;
+  margin-bottom: 190px;
 }
 
 .prolife__button {
