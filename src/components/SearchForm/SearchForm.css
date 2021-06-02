@@ -105,9 +105,21 @@
   flex-basis: 797px;
   max-width: 797px;
 }
+.search__input_error {
+  border-bottom: #EE3465 1px solid;
+}
 
 .search__input:focus {
   border-bottom: #4285F4 1px solid;
+}
+
+.search__input-error {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #FF004C;
+  margin: 0 20px 20px;
+  display: block;
 }
 
 .search__icon {

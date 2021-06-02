@@ -1,6 +1,12 @@
 Приложние movies-explorer.
+Учебный проект по поиску фильмов.
+В проекте реализован следующий функционал:
+- регистрация пользователей,
+- авторизация пользователей,
+- поиск фильмов по ключевому слову,
+- сохранение понравившихся фильмов на отдельную страницу.
 
-Ссылка на макет https://disk.yandex.ru/d/xA19S5Ig_6LF0A
+Приложение можно посмотреть по следующему адресу https://olegbelyaev.nomoredomains.icu.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

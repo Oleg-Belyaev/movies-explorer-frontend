@@ -1,52 +1,75 @@
 import React from 'react';
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useForm } from '../../hooks/useForm';
 
 function Profile (props) {
-  const [isChange, setIsChange] = React.useState(false);
+  const currentUser = React.useContext(CurrentUserContext);
+  const { values, errors, isValid, handleChange, resetForm } = useForm();
 
   const onClick = () => {
-    isChange ? setIsChange(false) : setIsChange(true);
+    props.onChange();
   }
 
-  const onChange = (event) => {
-    console.log(event)
+  React.useEffect(() => {
+    if (currentUser) {
+      resetForm(currentUser, {}, true)
+      props.onUpload()
+    }
+  }, [currentUser, resetForm]);
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    props.onUpdateUser({
+      name: values.name,
+      email: values.email
+    })
   }
   
   return (
-    isChange 
+    props.change 
     ?
     <main className="main page__main">
       <section className="profile main__profile">
-        <h1 className="profile__title">Привет, Олег!</h1>
-        <form className="profile__form" name="profileChange">
+        <h1 className="profile__title">{currentUser ? `Привет, ${currentUser.name}!` : null}</h1>
+        <form className="profile__form" name="profileChange" onSubmit={handleSubmit}>
           <div className="profile__field">
             <label className="profile__label" htmlFor="name">Имя</label>
-            <input type="text" className="profile__input" 
-            name="name" placeholder="Name" id="name-input" required defaultValue="Олег" onChange={onChange}/>
+            <input disabled={props.disabled ? true : false} type="text" className="profile__input" 
+            name="name" placeholder="Name" id="name-input" required pattern="^[А-Яа-яЁёa-zA-Z\s/-]{3,}$" value={values.name || ''} onChange={handleChange}/>  
           </div>
+          <span className="registr__input-error">{`${errors.name ? 'Имя должно содержать только латиницу, кириллицу, пробел или дефис. Длина не менее 3 символов' : ''}`}</span>
           <div className="profile__field">
             <label className="profile__label" htmlFor="email">E-mail</label>
-            <input type="email" className="profile__input" 
-            name="email" placeholder="E-mail" id="email-input" required defaultValue="pochta@yandex.ru" onChange={onChange}/>
+            <input disabled={props.disabled ? true : false} type="email" className="profile__input" 
+            name="email" placeholder="E-mail" id="email-input" required value={values.email || ''} onChange={handleChange}/>
           </div>
-          <span className="profile__input-error">При обновлении профиля произошла ошибка.</span>
-          <button onClick={onClick} type="submit" className="prolife__button prolife__button_type_save">Сохранить</button>
+          <span className="login__input-error">{errors.email}</span>
+          <div className="profile__container">
+            <span className="profile__input-error">{props.error ? 'При обновлении профиля произошла ошибка.' : ''}</span>
+            <button disabled={props.disabled ? true : false} type="submit" className={`${(isValid && (values.name !== currentUser.name || values.email !== currentUser.email)) ? "prolife__button prolife__button_type_save" 
+            : "prolife__button prolife__button_type_save prolife__button_inactive"}`}>Сохранить</button>
+          </div>
         </form>
       </section>
     </main>
     :
     <main className="main page__main">
       <section className="profile main__profile">
-        <h1 className="profile__title">Привет, Олег!</h1>
+        <h1 className="profile__title">{currentUser ? `Привет, ${currentUser.name}!` : null}</h1>
         <div className="profile__info">
           <div className="profile__item">
             <p className="profile__text">Имя</p>
-            <p className="profile__text">Олег</p>
+            <p className="profile__text">{currentUser ? currentUser.name : null}</p>
           </div>
           <div className="profile__item">
             <p className="profile__text">E-mail</p>
-            <p className="profile__text">pochta@yandex.ru</p>
+            <p className="profile__text">{currentUser ? currentUser.email : null}</p>
           </div>
+          <p className="profile__text profile__text_update">{
+            (props.update) ? 'Данные успешно обновлены!' : ''
+          }
+          </p>
           <button onClick={onClick} className="prolife__button">Редактировать</button>
           <button onClick={props.logout} className="prolife__button prolife__button_type_logout">Выйти из аккаунта</button>
         </div>

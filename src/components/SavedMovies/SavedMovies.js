@@ -5,8 +5,9 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 function SavedMovies (props) {
   return (
     <main className="main page__main">
-      <SearchForm />
-      <MoviesCardList inSavedPage={true}/>
+      <SearchForm onSearch={props.onSearch} onClickShort={props.onClickShort}/>
+      <MoviesCardList inSavedPage={true} cards={props.cards} countCards={props.countCards} 
+      onDelete={props.onDelete} emptySearch={props.emptySearch} errorSearch={props.errorSearch}/>
     </main>
   )
 }
