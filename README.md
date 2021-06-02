@@ -4,11 +4,9 @@
 - регистрация пользователей,
 - авторизация пользователей,
 - поиск фильмов по ключевому слову,
-- сохранение поравившихся фильмов на отдельную страницу
+- сохранение понравившихся фильмов на отдельную страницу.
 
-Приложение можно посмотреть по следующему адресу olegbelyaev.nomoredomains.icu.
-
-Ссылка на макет https://disk.yandex.ru/d/xA19S5Ig_6LF0A
+Приложение можно посмотреть по следующему адресу https://olegbelyaev.nomoredomains.icu.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
